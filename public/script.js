@@ -32,7 +32,15 @@ document.getElementById('carpoolForm').addEventListener('submit', async function
     fetchCarpools();
 });
 
-async function fetchCarpools() {
+document.getElementById('searchButton').addEventListener('click', async function () {
+    const origin = document.getElementById('searchOrigin').value;
+    const destination = document.getElementById('searchDestination').value;
+    const price = parseFloat(document.getElementById('searchPrice').value);
+
+    await fetchCarpools(origin, destination, price);
+});
+
+async function fetchCarpools(origin = '', destination = '', price = null) {
     const response = await fetch('/getCarpools');
     const data = await response.json();
     const tableBody = document.getElementById('carpoolTable').getElementsByTagName('tbody')[0];
@@ -40,8 +48,16 @@ async function fetchCarpools() {
     // Clear existing rows
     tableBody.innerHTML = '';
 
-    // Populate table with new data
-    data.forEach(row => {
+    // Filter data based on search criteria
+    const filteredData = data.filter(row => {
+        const matchesOrigin = origin ? row.origin.toLowerCase().includes(origin.toLowerCase()) : true;
+        const matchesDestination = destination ? row.destination.toLowerCase().includes(destination.toLowerCase()) : true;
+        const matchesPrice = price ? row.price <= price : true;
+        return matchesOrigin && matchesDestination && matchesPrice;
+    });
+
+    // Populate table with filtered data
+    filteredData.forEach(row => {
         const newRow = tableBody.insertRow();
         newRow.innerHTML = `
             <td>${row.Id}</td>
@@ -52,7 +68,7 @@ async function fetchCarpools() {
             <td>${row.price}</td>
             <td>${row.datetime}</td>
             <td>${row.vacancies}</td>
-            <td><button class="delete-btn" data-id="${row.Id}">Delete</button></td> <!-- Delete button -->
+            <td><button class="delete-btn" data-id="${row.Id}">Delete</button></td>
         `;
     });
 
