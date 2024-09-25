@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carpool Application</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Carpool</h1>
+        <form id="carpoolForm">
+            <input type="text" id="name" placeholder="Name" required>
+            <input type="text" id="phno" placeholder="Phone Number" required>
+            <input type="text" id="origin" placeholder="Origin" required>
+            <input type="text" id="destination" placeholder="Destination" required>
+            <input type="number" id="price" placeholder="Price" required>
+            <input type="number" id="vacancies" placeholder="Vacancies" required>
+            <button type="submit">Create Carpool</button>
+        </form>
+        <div id="message"></div>
+
+        <h2>Existing Carpools</h2>
+        <table id="carpoolTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Origin</th>
+                    <th>Destination</th>
+                    <th>Price</th>
+                    <th>Date & Time</th>
+                    <th>Vacancies</th>
+                    <th>Action</th> <!-- New column for the delete button -->
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be populated here -->
+            </tbody>
+        </table>        
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
