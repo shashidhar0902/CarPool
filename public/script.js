@@ -60,7 +60,6 @@ async function fetchCarpools(origin = '', destination = '', price = null) {
     filteredData.forEach(row => {
         const newRow = tableBody.insertRow();
         newRow.innerHTML = `
-            <td>${row.Id}</td>
             <td>${row.Name}</td>
             <td>${row.phno}</td>
             <td>${row.origin}</td>
