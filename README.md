@@ -1,10 +1,26 @@
-open terminal and traverse into the directory
+# After cloning, run the following commands
 
-1st command
+## run
+
+```bash
+
+cd Carpool
 npm install
-
-2nd command
 node createDB.js
 
-3rd command
+```
+
+
+## To run locally
+```bash
+
 node server.js
+
+```
+
+## to set up in production environment
+```bash
+npm install -g pm2
+pm2 start .\server.js
+
+```
